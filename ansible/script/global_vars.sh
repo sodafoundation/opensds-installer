@@ -43,7 +43,7 @@ dashboard_installation_type=container
 
 # osdsdock
 # Change it according to your backend, currently support 'lvm', 'ceph', 'cinder'
-enabled_backend=ceph
+enabled_backends=ceph
 
 ###########
 #   LVM   #
