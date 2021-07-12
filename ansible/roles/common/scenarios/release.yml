@@ -19,11 +19,22 @@
     path: "{{ hotpot_work_dir }}/bin/osdsapiserver"
   register: apireleasesexisted
 
-- name: download and extract the api release tarball if not exists
-  unarchive:
-    src: "{{ api_download_url }}"
-    dest: /tmp/
+- name: download the api release tarball if not exists
+  get_url:
+    url: "{{ api_download_url }}"
+    dest: /tmp/api_ArChIvE.tar.gz
     remote_src: yes
+  register: dlresult
+  until: dlresult is not failed
+  retries: 5
+  delay: 10
+  when:
+    - apireleasesexisted.stat.exists is undefined or apireleasesexisted.stat.exists == false
+
+- name: extract the api release tarball if downloaded
+  unarchive:
+    src: /tmp/api_ArChIvE.tar.gz
+    dest: /tmp/
   when:
     - apireleasesexisted.stat.exists is undefined or apireleasesexisted.stat.exists == false
 
@@ -49,11 +60,22 @@
     path: "{{ hotpot_work_dir }}/bin/osdslet"
   register: controllerreleasesexisted
 
-- name: download and extract the controller release tarball if not exists
-  unarchive:
-    src: "{{ controller_download_url }}"
-    dest: /tmp/
+- name: download the controller release tarball if not exists
+  get_url:
+    url: "{{ controller_download_url }}"
+    dest: /tmp/controller_ArChIvE.tar.gz
     remote_src: yes
+  register: dlresult
+  until: dlresult is not failed
+  retries: 5
+  delay: 10
+  when:
+    - controllerreleasesexisted.stat.exists is undefined or controllerreleasesexisted.stat.exists == false
+
+- name: extract the controller release tarball if downloaded
+  unarchive:
+    src: /tmp/controller_ArChIvE.tar.gz
+    dest: /tmp/
   when:
     - controllerreleasesexisted.stat.exists is undefined or controllerreleasesexisted.stat.exists == false
 
@@ -79,11 +101,22 @@
     path: "{{ hotpot_work_dir }}/bin/osdsdock"
   register: dockreleasesexisted
 
-- name: download and extract the dock release tarball if not exists
-  unarchive:
-    src: "{{ dock_download_url }}"
-    dest: /tmp/
+- name: download the dock release tarball if not exists
+  get_url:
+    url: "{{ dock_download_url }}"
+    dest: /tmp/dock_ArChIvE.tar.gz
     remote_src: yes
+  register: dlresult
+  until: dlresult is not failed
+  retries: 5
+  delay: 10
+  when:
+    - dockreleasesexisted.stat.exists is undefined or dockreleasesexisted.stat.exists == false
+
+- name: extract the dock release tarball if downloaded
+  unarchive:
+    src: /tmp/dock_ArChIvE.tar.gz
+    dest: /tmp/
   when:
     - dockreleasesexisted.stat.exists is undefined or dockreleasesexisted.stat.exists == false
 
