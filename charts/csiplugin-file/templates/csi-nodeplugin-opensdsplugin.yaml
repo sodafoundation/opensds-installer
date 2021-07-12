@@ -26,7 +26,9 @@ spec:
         - key: node-role.kubernetes.io/master
           effect: NoSchedule
       serviceAccount: csi-nodeplugin-file
+      # https://kubernetes.io/docs/concepts/services-networking/dns-pod-service
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: node-driver-registrar
           image: quay.io/k8scsi/csi-node-driver-registrar:v1.1.0

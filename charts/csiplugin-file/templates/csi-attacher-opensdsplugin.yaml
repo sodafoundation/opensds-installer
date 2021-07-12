@@ -43,6 +43,9 @@ spec:
         release: {{ .Release.Name }}
     spec:
       serviceAccount: csi-attacher-file
+      # https://kubernetes.io/docs/concepts/services-networking/dns-pod-service
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: csi-attacher
           image: quay.io/k8scsi/csi-attacher:v1.1.1

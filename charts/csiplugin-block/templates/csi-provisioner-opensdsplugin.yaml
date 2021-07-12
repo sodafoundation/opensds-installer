@@ -43,6 +43,9 @@ spec:
         release: {{ .Release.Name }}
     spec:
       serviceAccount: csi-provisioner-block
+      # https://kubernetes.io/docs/concepts/services-networking/dns-pod-service
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: csi-provisioner
           image: quay.io/k8scsi/csi-provisioner:v1.1.0
