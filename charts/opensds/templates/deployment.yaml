@@ -16,7 +16,7 @@
 # Apiserver deployment
 ##########################################################################
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: {{ template "osdsapiserver.fullname" . }}
   labels:
@@ -58,7 +58,7 @@ spec:
 # Controller deployment
 ##########################################################################
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: {{ template "osdslet.fullname" . }}
   labels:
@@ -100,7 +100,7 @@ spec:
 # Dock deployment
 ##########################################################################
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: {{ template "osdsdock.fullname" . }}
   labels:
@@ -188,7 +188,7 @@ spec:
 # DB deployment
 ##########################################################################
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: {{ template "osdsdb.fullname" . }}
   labels:
@@ -238,7 +238,7 @@ spec:
 {{- if .Values.deployments.osdsdashboard }}
 ---
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: {{ template "osdsdashboard.fullname" . }}
   labels:
@@ -281,7 +281,7 @@ spec:
 {{- if .Values.deployments.osdsauthchecker }}
 ---
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: {{ template "osdsauthchecker.fullname" . }}
   labels:
